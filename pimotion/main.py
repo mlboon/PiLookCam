@@ -33,5 +33,5 @@ def callback(path):
         print 'CloudApp ERROR:' + e.message
 
 
-motion = PiMotion(verbose=True, post_capture_callback=callback)
+motion = PiMotion(verbose=True, post_capture_callback=None)
 motion.start()
