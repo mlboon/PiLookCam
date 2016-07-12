@@ -4,6 +4,7 @@ import json
 
 from cloudapp.exceptions import CloudAppHttpError
 
+
 class CloudAppAPI:
 
     def __init__(self, username, password):
@@ -16,16 +17,18 @@ class CloudAppAPI:
         url = data['url']
         params = data['params']
 
-        headers = {'accept': 'application/json'}
-        response = requests.post(url, files={'file': open(path, 'rb')}, data=params, allow_redirects=False)
+        headers = {'accept': 'application/json'} # Check this line
+        response = requests.post(url, files={'file': open(path, 'rb')},
+                                 data=params, allow_redirects=False)
         uri = response.headers['location']
         data = self.__get(uri)
         return data['download_url']
 
     def __get(self, uri):
         headers = {'accept': 'application/json'}
-        r = requests.get(uri, auth=HTTPDigestAuth(self.username, self.password),
-                              headers=headers)
+        r = requests.get(uri, auth=HTTPDigestAuth(self.username,
+                                                  self.password),
+                         headers=headers)
         if r.status_code != 200:
             raise CloudAppHttpError(response=r)
         return json.loads(r.text)

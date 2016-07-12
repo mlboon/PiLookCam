@@ -22,7 +22,7 @@ def callback(path):
                                Config.get('m2x',
                                           'device_id')
                               ).stream(Config.get('m2x', 'stream'))
-        result = stream.add_value(url)
+        result = stream.add_value(url) # Check this line for redundancy
         print "Posted URL to M2X stream %s" % Config.get('m2x', 'stream')
     except HTTPError, e:
         print 'ERROR: '
