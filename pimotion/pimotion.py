@@ -89,7 +89,12 @@ class PiMotion:
     # function to provide camera feed using handler
     def start(self):
         with picamera.PiCamera() as camera:
+            # Flip image
+            camera.vflip = True
+            camera.hflip = True
+            # Set resolution
             camera.resolution = (1280, 960)
+            # Set fps
             camera.framerate = 10
 
             handler = CaptureHandler(camera, self.post_capture_callback)

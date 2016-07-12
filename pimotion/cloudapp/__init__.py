@@ -17,7 +17,7 @@ class CloudAppAPI:
         url = data['url']
         params = data['params']
 
-        headers = {'accept': 'application/json'} # Check this line
+        headers = {'accept': 'application/json'}  # Check this line
         response = requests.post(url, files={'file': open(path, 'rb')},
                                  data=params, allow_redirects=False)
         uri = response.headers['location']
